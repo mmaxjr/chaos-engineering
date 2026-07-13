@@ -1,0 +1,34 @@
+# Exemplo de "game day": uma suíte de experimentos executados em sequência.
+# Rode com: python -m chaos.cli gameday config/gameday_example.yaml
+name: "Game Day - Resiliência básica"
+experiments:
+  - type: process-kill
+    duration: 5
+    metrics_interval: 1
+
+  - type: process-crash-loop
+    duration: 8
+    crash_interval: 2
+
+  - type: cpu-stress
+    duration: 6
+    workers: 2
+
+  - type: memory-stress
+    duration: 5
+    target_mb: 128
+
+  - type: disk-fill
+    duration: 3
+    target_mb: 64
+
+  - type: network-latency
+    duration: 6
+    delay_ms: 150
+
+  - type: packet-loss
+    duration: 6
+    loss_pct: 15
+
+  - type: network-partition
+    duration: 4
